@@ -87,13 +87,9 @@ $("#accountform").validate({
   
   if you want to use one of the validators which need a parameter, like _.minLenght or _.maxLenght you are going to need to use 'arg' attribute;
   
- * 'inlineError: true' causes the validation message show up in a pop-up box on top of the validating field, the default id is false and by defaulr 
-    validation engine will look for a div with id="errorsDiv" inside your form to render the error message in it and display it.
+ * 'inlineError: true' causes the validation message show up in a pop-up box on top of the validating field, the default id is false and by default validation engine will look for a div with id="errorsDiv" inside your form to render the error message in it and display it.
 
-* by default validation goes off when your form is submitted but if you need a more responsive validation for some fields you can use 'event' attribute
-   to let the validator know when you want the field validated. event: 'blur' is a good example.
+* by default validation goes off when your form is submitted but if you need a more responsive validation for some fields you can use 'event' attribute to let the validator know when you want the field validated. event: 'blur' is a good example.
 			       
-* 'dateFormat: true' could be quite handy when you have a Date field, validation engine renders a nice date-picker (jqueryUI date-picker) wigdet
-   which alllows users to choose a date, when you use datePicker attribute there are two other attributes that you might find intersting, 'past:true' will
-   make sure users can only choose dates before today and future:true does the same the other way around.
+* 'dateFormat: true' could be quite handy when you have a Date field, validation engine renders a nice date-picker (jqueryUI date-picker) wigdet which alllows users to choose a date, when you use datePicker attribute there are two other attributes that you might find intersting, 'past:true' will make sure users can only choose dates before today and future:true does the same the other way around.
    
