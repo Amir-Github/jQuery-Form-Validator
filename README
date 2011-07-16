@@ -1,0 +1,99 @@
+
+all you need to do is to make sure you have got jquery 
+and jquery-ui (only if you need to use dateFormat attribute since it uses jquery-ui date-picker widget)
+and you are good to go.
+
+
+$("#accountform").validate({
+                                 "#fname": {required:true , 
+                                            message:"First name is mandatory" ,  
+                                            inlineError: true
+                                            },
+                                 "#lname": {required:true , 
+                                            message:"Last name is mandatory",
+                                            inlineError: true
+                                            },
+                                  "#email":{required:true , 
+                                            message: function(){return $("#email").val() == "" ? "Email is mandatory" : $("#email").val()+" is not a valid email";},
+                                            validator: _.email,
+                                            inlineError: true,
+                                            event: "blur" 
+                                            },
+                                  "#addr": {required:true , 
+                                            message: function(){return $("#addr").val() == "" ? "Address is mandatory" : "Please enter a valid address";},
+                                            validator: _.minLenght,
+					    arg: 5,
+                                            inlineError: true,
+                                            event: "blur" 
+                                            },
+                                  "#suburb": {required:true , 
+                                            message: function(){return $("#suburb").val() == "" ? "Suburb is mandatory" : "Please enter a valid suburb";},
+                                            validator: function(){return $("#suburb").val().length > 2;},
+                                            inlineError: true,
+                                            event: "blur" 
+                                            },
+                                   "#zip": {required:true , 
+                                            message: function(){return $("#zip").val() == "" ? "Post/Zip code is mandatory" : "Please enter a valid post code.";},
+                                            validator: _.numeric,
+                                            inlineError: true,
+                                            event: "blur" 
+                                            },
+                                    "#cardholder": {
+                                            required:true , 
+                                            message: "Cardholder name is mandatory",
+                                            inlineError: true
+                                            },
+                                    "#cardtype": {
+                                            required:true , 
+                                            message: "Card type is mandatory",
+                                            inlineError: true
+                                            },
+                                     "#cardnum": {
+                                            required:true , 
+                                            message: function(){return $("#cardnum").val() == "" ? "Card number is mandatory" : "Invalid number. Please try again";},
+                                            validator: validate_card,
+                                            inlineError: true,
+                                            event: "blur" 
+                                            },
+                                      "#ccv": {
+                                            required:true , 
+                                            message: "CCV is mandatory",
+                                            inlineError: true
+                                            },
+                                      "#expiry": {
+                                            dateFormat : true,
+                                            past : true,
+                                            required:true , 
+                                            message: "Expiry date is mandatory"
+                                            }                                                                                                    
+                               } , post_validation);
+
+
+
+* post_validation function is called at the end only if all fileds are valid.
+
+* value of validator attribute can be any function which returns a boolean value, following functions are available by default though: 
+   _.phone
+   _.email
+   _.url
+  _.minLenght
+  _.maxLenght
+  _.image
+  _.zipcode
+  _.equal
+  _.numeric
+  _.minAmount
+  _.maxAmount
+  
+  if you want to use one of the validators which need a parameter, like _.minLenght or _.maxLenght you are going to need to use 'arg' attribute;
+  
+ * 'inlineError: true' causes the validation message show up in a pop-up box on top of the validating field, the default id is false and by defaulr 
+    validation engine will look for a div with id="errorsDiv" inside your form to render the error message in it and display it.
+
+* by default validation goes off when your form is submitted but if you need a more responsive validation for some fields you can use 'event' attribute
+   to let the validator know when you want the field validated. event: 'blur' is a good example.
+			       
+* 'dateFormat: true' could be quite handy when you have a Date field, validation engine renders a nice date-picker (jqueryUI date-picker) wigdet
+   which alllows users to choose a date, when you use datePicker attribute there are two other attributes that you might find intersting, 'past:true' will
+   make sure users can only choose dates before today and future:true does the same the other way around.
+   
